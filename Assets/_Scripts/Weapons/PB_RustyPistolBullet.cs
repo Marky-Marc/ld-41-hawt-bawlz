@@ -7,11 +7,13 @@ public class PB_RustyPistolBullet : MonoBehaviour {
     [SerializeField]
     private Projectile _projectileStats;
     private Rigidbody2D _projectileBody;
-    private Vector2 _projectileDirection;
+    private Ray2D _projectileDirection;
+    private Vector2 _maxDistance;
     // Use this for initialization
     private void Awake()
     {
-        _projectileDirection = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _projectileDirection = new Ray2D(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        _maxDistance = _projectileDirection.GetPoint(_projectileStats.Range);
     }
     void Start () {
         _projectileBody = GetComponent<Rigidbody2D>();
@@ -19,8 +21,13 @@ public class PB_RustyPistolBullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //_projectileBody.velocity = projectileDirection * _projectileStats.Velocity * Time.deltaTime;
-        var nextPosition = Vector2.MoveTowards(transform.position, _projectileDirection, _projectileStats.Velocity * Time.deltaTime);
+
+        var nextPosition = Vector2.MoveTowards(transform.position, _maxDistance, _projectileStats.Velocity * Time.deltaTime);
         _projectileBody.MovePosition(nextPosition);
+
+        if(this.transform.position == (Vector3)_maxDistance)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
