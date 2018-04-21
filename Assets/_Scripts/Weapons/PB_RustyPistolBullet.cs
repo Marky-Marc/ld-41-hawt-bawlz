@@ -7,12 +7,12 @@ public class PB_RustyPistolBullet : MonoBehaviour {
     [SerializeField]
     private Projectile _projectileStats;
     private Rigidbody2D _projectileBody;
-    private Ray2D _projectileDirection;
+    private Ray _projectileDirection;
     private Vector2 _maxDistance;
     // Use this for initialization
     private void Awake()
     {
-        _projectileDirection = new Ray2D(this.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        _projectileDirection = Camera.main.ScreenPointToRay(Input.mousePosition);
         _maxDistance = _projectileDirection.GetPoint(_projectileStats.Range);
     }
     void Start () {
