@@ -5,5 +5,4 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Gun", menuName = "Weapons/Gun")]
 public class Gun : ScriptableObject {
     public float FireRate;
-    public float Damage;
 }

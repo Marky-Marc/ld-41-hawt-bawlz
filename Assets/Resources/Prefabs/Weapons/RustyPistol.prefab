@@ -52,3 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunStats: {fileID: 11400000, guid: 19d1b9dfba3fe484da968d8d3e1e750c, type: 2}
+  _bullet: {fileID: 1338389975720856, guid: abb25e6b734a56348864ec837daa67b8, type: 2}

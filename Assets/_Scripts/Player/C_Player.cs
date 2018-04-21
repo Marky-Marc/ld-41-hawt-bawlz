@@ -8,6 +8,7 @@ public class C_Player : MonoBehaviour {
     private float _movementSpeed;
     private Animator _playerAnimator;
     private GameObject _player;
+    private Weapon _currentWeapon;
 
     private Vector3 _mouseInWorld
     {
@@ -22,6 +23,11 @@ public class C_Player : MonoBehaviour {
 	void Start () {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerAnimator = _player.GetComponent<Animator>();
+
+        var rustyPistol = Resources.Load<GameObject>("Prefabs/Weapons/RustyPistol");
+        var rustyPistolInstance = Instantiate(rustyPistol, new Vector3(0.32f, 0.13f, 0), _player.transform.rotation, _player.transform);
+
+        _currentWeapon = rustyPistolInstance.GetComponent<Weapon>();
 	}
 	
 	// Update is called once per frame
@@ -46,18 +52,20 @@ public class C_Player : MonoBehaviour {
     }
     IEnumerator HandleUserInput()
     {
-        float horizontalInputValue = Input.GetAxis("Horizontal");
         float verticalInputValue = Input.GetAxis("Vertical");
         bool firing = Input.GetButton("Fire1");
 
-        _playerAnimator.SetBool("PlayerMoving", Mathf.Abs(horizontalInputValue) != 0.0f || Mathf.Abs(verticalInputValue) != 0.0f);
+        _playerAnimator.SetBool("PlayerMoving", Mathf.Abs(verticalInputValue) != 0.0f);
 
         if (verticalInputValue > 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, _mouseInWorld, _movementSpeed * Time.deltaTime);
         }
 
-        Debug.Log($"Horizontal Input Value: {horizontalInputValue} Vertical Input Value: {verticalInputValue} Firing: {firing}");
+        if(firing && _currentWeapon != null)
+        {
+            _currentWeapon.Fire();
+        }
 
         yield return null;
     }
