@@ -9,7 +9,7 @@ public class C_Player : MonoBehaviour {
     private Animator _playerAnimator;
     private GameObject _player;
     private Weapon _currentWeapon;
-
+    private SpriteRenderer _weaponCrosshair;
     private Vector3 _mouseInWorld
     {
         get
@@ -23,23 +23,19 @@ public class C_Player : MonoBehaviour {
 	void Start () {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerAnimator = _player.GetComponent<Animator>();
+        _weaponCrosshair = GameObject.Find("WeaponCrosshair").GetComponent<SpriteRenderer>();
+    }
 
-        var rustyPistol = Resources.Load<GameObject>("Prefabs/Weapons/RustyPistol");
-        var rustyPistolInstance = Instantiate(rustyPistol, new Vector3(0.32f, 0.13f, 0), _player.transform.rotation, _player.transform);
-
-        _currentWeapon = rustyPistolInstance.GetComponent<Weapon>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         StartCoroutine(HandleUserInput());
         StartCoroutine(UpdatePlayerLook());
         StartCoroutine(SetWeaponCrosshairPosition());
 	}
+    #region Player Input
     IEnumerator SetWeaponCrosshairPosition()
     {
-        var crosshair = GameObject.Find("WeaponCrosshair").GetComponent<SpriteRenderer>();
-        crosshair.transform.position = _mouseInWorld;
+        _weaponCrosshair.transform.position = _mouseInWorld;
         yield return null;
     }
     IEnumerator UpdatePlayerLook()
@@ -69,4 +65,35 @@ public class C_Player : MonoBehaviour {
 
         yield return null;
     }
+    #endregion
+    #region Pickups
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var objectName = collision.gameObject.name.ToUpper();
+        switch (objectName)
+        {
+            case "RUSTYPISTOLPICKUP":
+                {
+                    this.PickupRustyPistol(collision.gameObject);
+                }
+                break;
+        }
+    }
+    void PickupRustyPistol(GameObject pickup)
+    {
+        if(!_currentWeapon || _currentWeapon.name.ToUpper() != "RUSTYPISTOL(CLONE)")
+        {
+            var rustyPistol = Resources.Load<GameObject>("Prefabs/Weapons/RustyPistol");
+            var rustyPistolInstance = Instantiate(rustyPistol, Vector3.zero, _player.transform.rotation, _player.transform);
+            // Not sure why setting postion in Inistantiate() stopped working. Have never had to set localPosition before...look it up.
+            rustyPistolInstance.transform.localPosition = new Vector3(0.31f, 0.31f, 0);
+            _currentWeapon = rustyPistolInstance.GetComponent<Weapon>();
+
+            Debug.Log($"Rusty Pistol Position {rustyPistolInstance.transform.position}");
+            Debug.Log($"Rusty Pistol Local Position {rustyPistolInstance.transform.localPosition}");
+
+            Destroy(pickup);
+        }
+    }
+    #endregion
 }

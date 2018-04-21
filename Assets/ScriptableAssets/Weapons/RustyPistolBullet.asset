@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   Velocity: 10
-  Range: 4
+  Range: 1
