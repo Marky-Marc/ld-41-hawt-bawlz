@@ -89,6 +89,7 @@ public class C_Player : MonoBehaviour {
     void PickupWeapon(GameObject pickup)
     {
         var weaponName = pickup.name.Replace("Pickup", string.Empty);
+        var pickupLocation = pickup.gameObject.transform;
 
         if (!_currentWeapon || weaponName != _currentWeapon.name)
         {
@@ -99,6 +100,14 @@ public class C_Player : MonoBehaviour {
             _currentWeapon = newWeaponInstance.GetComponent<Weapon>();
 
             Destroy(pickup);
+
+            var pickupParticles = Resources.Load<GameObject>($"Prefabs/Weapons/{pickup.name}Particle");
+            if (pickupParticles)
+            {
+                var particleInstance = Instantiate(pickupParticles, pickupLocation.position, Quaternion.identity);
+                Destroy(particleInstance, 3.0f);
+            }
+
         }
     }
     #endregion

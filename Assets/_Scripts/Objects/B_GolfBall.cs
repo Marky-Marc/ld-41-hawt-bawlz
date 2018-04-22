@@ -38,7 +38,10 @@ public class B_GolfBall : MonoBehaviour {
     {
         if (collision.gameObject.name == "Hole")
         {
-            StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
+            var mp = GameObject.FindGameObjectWithTag("Player").GetComponent<SC_Music>();
+            mp.PlayerScored();
+            Destroy(this.gameObject);
+            //StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
         }
     }
 }
