@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Net;
 using UnityEngine;
 
 public class SC_Game : MonoBehaviour {
@@ -19,6 +21,7 @@ public class SC_Game : MonoBehaviour {
     private bool _ballSunk = false;
     public bool BallSunk => _ballSunk;
     private float _totalScore = 0.0f;
+    public float TotalScore => _totalScore;
     #endregion
 
     private void Awake()
@@ -37,5 +40,17 @@ public class SC_Game : MonoBehaviour {
     {
         _playActive = true;
         _ballSunk = false;
+    }
+
+    public void SubmitHighScore(string name)
+    {
+        var url = $"http://dreamlo.com/lb/og5ikfSV-0aAxhRcgAFzsg1MW8_IuowkmjDgs_lZl2qA/add/{name}/{_totalScore}";
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        request.Method = "GET";
+        request.GetResponse();
+    }
+    public void Reset()
+    {
+        _totalScore = 0;
     }
 }

@@ -34,7 +34,7 @@ public class B_Level_03 : B_Base
             SC_Game.Instance.IncrementTotalScore(currentBallHealth * _scoreMultiplier);
             Destroy(_golfBall);
 
-            //yield return SC_Game.Instance.Scenes.TransitionToScene("S_Level_03");
+            yield return SC_Game.Instance.Scenes.TransitionToScene("S_ScoreSubmission");
 
         }
         yield return null;

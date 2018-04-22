@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/GameLevels/S_Level_03.unity
     guid: 809ee5f475e30c947b2ee1c9734f9d09
+  - enabled: 1
+    path: Assets/_Scenes/GameLevels/S_ScoreSubmission.unity
+    guid: 0ed3513eb0dc6874c98625bf980d7553

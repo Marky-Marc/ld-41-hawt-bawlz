@@ -46,7 +46,7 @@ public class B_GolfBall : MonoBehaviour {
     {
         var mp = GameObject.FindGameObjectWithTag("Player").GetComponent<SC_Music>();
         mp.BallDied();
-        StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
+        StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_ScoreSubmission"));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
