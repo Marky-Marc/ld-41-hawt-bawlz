@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Projectile", menuName = "Weapons/Projectile")]
-class Projectile : ScriptableObject
+public class Projectile : ScriptableObject
 {
     public float Damage;
     public float Velocity;

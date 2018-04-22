@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WB_RustPistol : Weapon
+public class WB_ZombieShotgun : Weapon
 {
     public override void Update()
     {

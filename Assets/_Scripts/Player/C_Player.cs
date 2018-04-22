@@ -81,28 +81,22 @@ public class C_Player : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var objectName = collision.gameObject.name.ToUpper();
-        switch (objectName)
+        if (collision.gameObject.tag == "WeaponPickup")
         {
-            case "RUSTYPISTOLPICKUP":
-                {
-                    this.PickupRustyPistol(collision.gameObject);
-                }
-                break;
+            this.PickupWeapon(collision.gameObject);
         }
     }
-    void PickupRustyPistol(GameObject pickup)
+    void PickupWeapon(GameObject pickup)
     {
-        if(!_currentWeapon || _currentWeapon.name.ToUpper() != "RUSTYPISTOL")
-        {
-            var rustyPistol = Resources.Load<GameObject>("Prefabs/Weapons/RustyPistol");
-            var rustyPistolInstance = Instantiate(rustyPistol, Vector3.zero, _player.transform.rotation, _player.transform);
-            rustyPistolInstance.name = "RustyPistol";
-            rustyPistolInstance.transform.localPosition = new Vector3(0.31f, 0.31f, 0);
-            _currentWeapon = rustyPistolInstance.GetComponent<Weapon>();
+        var weaponName = pickup.name.Replace("Pickup", string.Empty);
 
-            Debug.Log($"Rusty Pistol Position {rustyPistolInstance.transform.position}");
-            Debug.Log($"Rusty Pistol Local Position {rustyPistolInstance.transform.localPosition}");
+        if (!_currentWeapon || weaponName != _currentWeapon.name)
+        {
+            var newWeapon = Resources.Load<GameObject>($"Prefabs/Weapons/{weaponName}");
+            var newWeaponInstance = Instantiate(newWeapon, Vector3.zero, _player.transform.rotation, _player.transform);
+            newWeaponInstance.name = weaponName;
+            newWeaponInstance.transform.localPosition = new Vector3(0.31f, 0.31f, 0);
+            _currentWeapon = newWeaponInstance.GetComponent<Weapon>();
 
             Destroy(pickup);
         }

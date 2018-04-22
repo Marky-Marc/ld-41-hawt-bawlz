@@ -8,7 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65a9194c2158f8d4caf6be3e4ef1bd52, type: 3}
-  m_Name: RustyPistol
+  m_Script: {fileID: 11500000, guid: c13257c7b9e79894599fae6365a19bf5, type: 3}
+  m_Name: ZombieShotgunShell
   m_EditorClassIdentifier: 
-  FireRate: 0.3
+  Damage: 15
+  Velocity: 10
+  Range: 2
+  RicochetCount: 0
