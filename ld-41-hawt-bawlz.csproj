@@ -321,6 +321,7 @@
     <Compile Include="Assets\_ScriptableObjects\Weapons\Gun.cs" />
     <Compile Include="Assets\_ScriptableObjects\Weapons\Projectile.cs" />
     <Compile Include="Assets\_Scripts\GameLevels\B_Level_01.cs" />
+    <Compile Include="Assets\_Scripts\GameLevels\B_Level_02.cs" />
     <Compile Include="Assets\_Scripts\Objects\B_GolfBall.cs" />
     <Compile Include="Assets\_Scripts\Objects\B_Hole.cs" />
     <Compile Include="Assets\_Scripts\Player\C_Player.cs" />

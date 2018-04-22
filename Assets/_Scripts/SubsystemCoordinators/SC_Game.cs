@@ -16,6 +16,8 @@ public class SC_Game : MonoBehaviour {
     #region Game State Properties
     private bool _playActive = true;
     public bool PlayActive => _playActive;
+    private bool _ballSunk = false;
+    public bool BallSunk => _ballSunk;
     #endregion
 
     private void Awake()
@@ -28,4 +30,5 @@ public class SC_Game : MonoBehaviour {
     }
 
     public void SetPlayActive(bool active) => _playActive = active;
+    public void SetBallSunk(bool sunk) => _ballSunk = sunk;
 }

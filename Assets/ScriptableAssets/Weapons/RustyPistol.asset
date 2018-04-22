@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a9194c2158f8d4caf6be3e4ef1bd52, type: 3}
   m_Name: RustyPistol
   m_EditorClassIdentifier: 
-  FireRate: 0.3
+  FireRate: 0.05

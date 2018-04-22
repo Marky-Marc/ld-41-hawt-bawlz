@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13257c7b9e79894599fae6365a19bf5, type: 3}
   m_Name: RustyPistolBullet
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 1
   Velocity: 10
   Range: 5
   RicochetCount: 2
