@@ -11,4 +11,5 @@ class Projectile : ScriptableObject
     public float Damage;
     public float Velocity;
     public float Range;
+    public int RicochetCount;
 }

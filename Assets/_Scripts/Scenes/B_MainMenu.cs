@@ -12,6 +12,7 @@ public class B_MainMenu : B_Base {
 
     private void Awake()
     {
+        Cursor.visible = true;
         _startButton.onClick.AddListener(StartGame);
     }
     protected override void Start()

@@ -67,6 +67,18 @@ public class C_Player : MonoBehaviour {
     }
     #endregion
     #region Pickups
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if(collision.gameObject.name.ToUpper() == "GOLFBALL")
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+        }
+        if (collision.gameObject.tag.ToUpper() == "PROJECTILE")
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var objectName = collision.gameObject.name.ToUpper();
@@ -81,11 +93,11 @@ public class C_Player : MonoBehaviour {
     }
     void PickupRustyPistol(GameObject pickup)
     {
-        if(!_currentWeapon || _currentWeapon.name.ToUpper() != "RUSTYPISTOL(CLONE)")
+        if(!_currentWeapon || _currentWeapon.name.ToUpper() != "RUSTYPISTOL")
         {
             var rustyPistol = Resources.Load<GameObject>("Prefabs/Weapons/RustyPistol");
             var rustyPistolInstance = Instantiate(rustyPistol, Vector3.zero, _player.transform.rotation, _player.transform);
-            // Not sure why setting postion in Inistantiate() stopped working. Have never had to set localPosition before...look it up.
+            rustyPistolInstance.name = "RustyPistol";
             rustyPistolInstance.transform.localPosition = new Vector3(0.31f, 0.31f, 0);
             _currentWeapon = rustyPistolInstance.GetComponent<Weapon>();
 

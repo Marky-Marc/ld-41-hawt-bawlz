@@ -6,6 +6,8 @@ public class B_Base : MonoBehaviour {
 
     [SerializeField]
     protected float _startDuration = 2.0f;
+    [SerializeField]
+    protected float _scoreMultiplier = 50.0f;
 
     // Use this for initialization
     protected virtual void Start()
