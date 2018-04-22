@@ -13,6 +13,11 @@ public class SC_Game : MonoBehaviour {
 
     public static SC_Game Instance;
 
+    #region Game State Properties
+    private bool _playActive = true;
+    public bool PlayActive => _playActive;
+    #endregion
+
     private void Awake()
     {
         if (Instance == null)
@@ -21,13 +26,6 @@ public class SC_Game : MonoBehaviour {
         }
         DontDestroyOnLoad(this.gameObject);
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public void SetPlayActive(bool active) => _playActive = active;
 }

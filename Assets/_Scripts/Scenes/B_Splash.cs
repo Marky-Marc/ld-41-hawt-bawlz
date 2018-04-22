@@ -16,7 +16,7 @@ public class B_Splash : MonoBehaviour {
 
     IEnumerator BeginTimedExit()
     {
-        yield return new WaitForSecondsRealtime(3.0f);
+        yield return new WaitForSecondsRealtime(0.0f);
         yield return SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu");
     }
 }

@@ -422,8 +422,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startDuration: 1
+  _scoreMultiplier: 50
   _startButton: {fileID: 506148901}
-  _startLevel: S_Level_01
+  _startLevel: S_Level_02
 --- !u!4 &1271032875
 Transform:
   m_ObjectHideFlags: 0

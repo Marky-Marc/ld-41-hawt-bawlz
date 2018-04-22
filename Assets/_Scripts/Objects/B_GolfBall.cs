@@ -5,6 +5,7 @@ using UnityEngine;
 public class B_GolfBall : MonoBehaviour {
 
     private float _health = 100.0f;
+    private bool _lowHealth;
 	// Use this for initialization
 	void Start () {
 		
@@ -12,7 +13,8 @@ public class B_GolfBall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        // Finish Game First
+        //StartCoroutine(CheckForLowHealth());
 	}
 
     public float CurrentHealth
@@ -21,6 +23,16 @@ public class B_GolfBall : MonoBehaviour {
         {
             return _health;
         }
+    }
+    IEnumerator CheckForLowHealth()
+    {
+        if (_health <= 50.0f && !_lowHealth)
+        {
+            _lowHealth = true;
+            var blood = Resources.Load<GameObject>($"Prefabs/GolfBallBlood");
+            Instantiate(blood, this.transform);
+        }
+        yield return null;
     }
     public void TakeDamage(float damage)
     {
@@ -40,6 +52,7 @@ public class B_GolfBall : MonoBehaviour {
         {
             var mp = GameObject.FindGameObjectWithTag("Player").GetComponent<SC_Music>();
             mp.PlayerScored();
+            SC_Game.Instance.SetPlayActive(false);
             Destroy(this.gameObject);
             //StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
         }
