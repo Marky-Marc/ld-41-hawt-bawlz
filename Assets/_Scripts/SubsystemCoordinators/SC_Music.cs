@@ -37,4 +37,8 @@ public class SC_Music : MonoBehaviour {
     {
         _score.TransitionTo(_transitionIn);
     }
+    public void BallDied()
+    {
+        _ambient.TransitionTo(_transitionIn);
+    }
 }

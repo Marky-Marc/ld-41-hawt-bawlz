@@ -18,6 +18,7 @@ public class SC_Game : MonoBehaviour {
     public bool PlayActive => _playActive;
     private bool _ballSunk = false;
     public bool BallSunk => _ballSunk;
+    private float _totalScore = 0.0f;
     #endregion
 
     private void Awake()
@@ -31,4 +32,10 @@ public class SC_Game : MonoBehaviour {
 
     public void SetPlayActive(bool active) => _playActive = active;
     public void SetBallSunk(bool sunk) => _ballSunk = sunk;
+    public void IncrementTotalScore(float score) => _totalScore += score;
+    public void StartLevel()
+    {
+        _playActive = true;
+        _ballSunk = false;
+    }
 }

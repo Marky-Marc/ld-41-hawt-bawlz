@@ -44,6 +44,8 @@ public class B_GolfBall : MonoBehaviour {
     }
     void Die()
     {
+        var mp = GameObject.FindGameObjectWithTag("Player").GetComponent<SC_Music>();
+        mp.BallDied();
         StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,8 +55,6 @@ public class B_GolfBall : MonoBehaviour {
             var mp = GameObject.FindGameObjectWithTag("Player").GetComponent<SC_Music>();
             mp.PlayerScored();
             SC_Game.Instance.SetBallSunk(true);
-            Destroy(this.gameObject);
-            //StartCoroutine(SC_Game.Instance.Scenes.TransitionToScene("S_MainMenu"));
         }
     }
 }

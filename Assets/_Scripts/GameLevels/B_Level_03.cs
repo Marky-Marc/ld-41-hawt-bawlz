@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Level_02 : B_Base
+public class B_Level_03 : B_Base
 {
 
     [SerializeField]
@@ -34,7 +34,7 @@ public class B_Level_02 : B_Base
             SC_Game.Instance.IncrementTotalScore(currentBallHealth * _scoreMultiplier);
             Destroy(_golfBall);
 
-            yield return SC_Game.Instance.Scenes.TransitionToScene("S_Level_03");
+            //yield return SC_Game.Instance.Scenes.TransitionToScene("S_Level_03");
 
         }
         yield return null;

@@ -31,6 +31,11 @@ public class C_Player : MonoBehaviour {
         StartCoroutine(HandleUserInput());
         StartCoroutine(UpdatePlayerLook());
         StartCoroutine(SetWeaponCrosshairPosition());
+
+        if(SC_Game.Instance.BallSunk)
+        {
+            StopAllCoroutines();
+        }
 	}
     #region Player Input
     IEnumerator SetWeaponCrosshairPosition()

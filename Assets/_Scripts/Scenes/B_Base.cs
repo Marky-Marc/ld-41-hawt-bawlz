@@ -12,6 +12,7 @@ public class B_Base : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
+        SC_Game.Instance.StartLevel();
         StartCoroutine(SceneFader.Fade(Color.black, Color.clear, _startDuration));
     }
 
