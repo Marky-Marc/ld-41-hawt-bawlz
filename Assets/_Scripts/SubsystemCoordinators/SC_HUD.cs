@@ -10,15 +10,26 @@ public class SC_HUD : MonoBehaviour {
     private Text _ballHealth;
     [SerializeField]
     private Text _currentScore;
+    [SerializeField]
+    private Button _closeHelp;
     // Use this for initialization
     void Start () {
-		
+        if (_closeHelp)
+        {
+            _closeHelp.onClick.AddListener(CloseHelp);
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    void CloseHelp()
+    {
+        var helpPanel = GameObject.FindGameObjectWithTag("Help");
+        Destroy(helpPanel);
+    }
 
     public void UpdateBallHealth(float currentHealth)
     {

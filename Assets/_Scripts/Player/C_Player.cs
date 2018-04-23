@@ -91,8 +91,19 @@ public class C_Player : MonoBehaviour {
             this.PickupWeapon(collision.gameObject);
         }
     }
+    void DropCurrentWeapon()
+    {
+        var currentWeapon = Resources.Load<GameObject>($"Prefabs/Weapons/{_currentWeapon.name}Pickup");
+        var currentWeaponDrop = Instantiate(currentWeapon, new Vector3(7 + Random.value * 2, -2 + Random.value * 2, 0), Quaternion.identity);
+        currentWeaponDrop.name = currentWeaponDrop.name.Replace("(Clone)", string.Empty);
+    }
     void PickupWeapon(GameObject pickup)
     {
+        if (_currentWeapon)
+        {
+            DropCurrentWeapon();
+        }
+
         var weaponName = pickup.name.Replace("Pickup", string.Empty);
         var pickupLocation = pickup.gameObject.transform;
 
@@ -106,12 +117,12 @@ public class C_Player : MonoBehaviour {
 
             Destroy(pickup);
 
-            var pickupParticles = Resources.Load<GameObject>($"Prefabs/Weapons/{pickup.name}Particle");
-            if (pickupParticles)
-            {
-                var particleInstance = Instantiate(pickupParticles, pickupLocation.position, Quaternion.identity);
-                Destroy(particleInstance, 3.0f);
-            }
+            //var pickupParticles = Resources.Load<GameObject>($"Prefabs/Weapons/{pickup.name}Particle");
+            //if (pickupParticles)
+            //{
+            //    var particleInstance = Instantiate(pickupParticles, pickupLocation.position, Quaternion.identity);
+            //    Destroy(particleInstance, 3.0f);
+            //}
 
         }
     }
